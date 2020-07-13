@@ -46,7 +46,14 @@ var Opts = struct {
 
 // Cond is sync.Cond wrapper
 type Cond struct {
-	sync.Cond
+	*sync.Cond
+}
+
+// NewCond returns a new Cond with Locker l.
+func NewCond(l Locker) *Cond {
+	return &Cond{
+		Cond: sync.NewCond(l),
+	}
 }
 
 // Locker is sync.Locker wrapper
