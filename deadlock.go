@@ -50,15 +50,10 @@ type Cond struct {
 }
 
 // NewCond returns a new Cond with Locker l.
-func NewCond(l Locker) *Cond {
+func NewCond(l sync.Locker) *Cond {
 	return &Cond{
 		Cond: sync.NewCond(l),
 	}
-}
-
-// Locker is sync.Locker wrapper
-type Locker struct {
-	sync.Locker
 }
 
 // Once is sync.Once wrapper
